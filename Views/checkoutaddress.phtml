@@ -1,0 +1,136 @@
+<?php require_once 'template/header.phtml'; ?>
+
+<link rel="stylesheet" href="bootstrap/css/signin.css"> 
+
+<script src="../js/jquery-2.1.3.js" type="text/javascript"></script>
+<script src="../js/jquery-ui.js" type="text/javascript"></script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">  
+                    <h1>Your Delivery Address</h1>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Are you registered with us?</h3>
+                                </div>
+                                <div class="panel-body">
+
+                                    <div class="btn-group" role="group" aria-label="...">
+                                        <button class="btn btn-default" onclick="$('#registeredLogIn').toggle();">Yes</button>
+
+                                        <button class="btn btn-default active" onclick="$('#enterAddress').toggle();">No</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <div class="panel panel-default" id="registeredLogIn" style="display: none">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Please Log in here</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <form class="form-signin">
+                                        <label class="sr-only" for="inputEmail">Email address</label>
+                                        <input id="inputEmail" class="form-control" type="email" autofocus="" required="" placeholder="Email address">
+                                        <label class="sr-only" for="inputPassword">Password</label>
+                                        <input id="inputPassword" class="form-control" type="password" required="" placeholder="Password">
+                                        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-default" id="enterAddress" style="display: block" >
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Please enter your details</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class = "col-md-8">
+
+                                        <form method="POST" action="checkoutaddress.php">
+                                            <?php $errors = array(); ?>
+                                            <!--                                            //Set up an array to record the errors-->
+                                            <div class="form-group">
+                                                <label for="forename">Forename *</label>
+                                                <input type="text" class="form-control" name="forename" id="forename" value="<?= (isset($_POST['forename'])) ? $_POST['forename'] : '' ?>" placeholder="Enter your Forename" >
+                                                <label for="surname">Surname *</label>
+                                                <input type="text" class="form-control" name="surname" id="surname" value="<?= (isset($_POST['surname'])) ? $_POST['surname'] : '' ?>" placeholder="Enter your Surname" >
+                                                <label for="email">Email *</label>
+                                                <input type="text" class="form-control" name="email" id="email" value="<?= (isset($_POST['email'])) ? $_POST['email'] : '' ?>" placeholder="Enter your Email" >
+                                                <label for="address1">Address Line 1 *</label>
+                                                <input type="text" class="form-control" name="address1" id="address1" value="<?= (isset($_POST['address1'])) ? $_POST['address1'] : '' ?>" placeholder="Enter Address Line 1" >
+                                                <label for="address2">Address Line 2</label>
+                                                <input type="text" class="form-control" name="address2" id="address2" value="<?= (isset($_POST['address2'])) ? $_POST['address2'] : '' ?>" placeholder="Enter Address Line 2" >
+                                                <label for="address3">Address Line 3</label>
+                                                <input type="text" class="form-control" name="address3" id="address3" value="<?= (isset($_POST['address3'])) ? $_POST['address3'] : '' ?>" placeholder="Enter Address Line 3" >
+                                                <label for="address4">Address Line 4</label>
+                                                <input type="text" class="form-control" name="address4" id="address4" value="<?= (isset($_POST['address4'])) ? $_POST['address4'] : '' ?>" placeholder="Enter Address Line 4" >
+                                                <label for="address5">Address Line 5</label>
+                                                <input type="text" class="form-control" name="address5" id="address5" value="<?= (isset($_POST['address5'])) ? $_POST['address5'] : '' ?>" placeholder="Enter Address Line 5" >
+                                                <label for="postcode">Postcode *</label>
+                                                <input type="text" class="form-control" name="postcode" id="postcode" value="<?= (isset($_POST['postcode'])) ? $_POST['postcode'] : '' ?>" placeholder="Enter your Postcode" >
+                                                <label for="postcode">Phone</label>
+                                                <input type="text" class="form-control" name="phone" id="phone" value="<?= (isset($_POST['phone'])) ? $_POST['phone'] : '' ?>" placeholder="Enter your Phone Number" >
+                                                <label for="register">Would you like to register with us?</label>
+                                                <div class="radio" id="register">
+                                                    <label>
+                                                        <input type="radio" name="register?" value="Yes" id="registerYes">
+                                                        Yes
+                                                    </label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label>
+                                                        <input type="radio" name="register?" value="No" id="registerNo" checked>
+                                                        No
+                                                    </label>
+                                                </div>
+                                            </div>  
+
+                                            <div align="center"><button type="submit" class="btn btn-primary"  >Continue</button></div> 
+
+                                        </form>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--                <div id="registered">
+                                    <h3>Yes</h3>
+                                    <p>blab</p>
+                                    <h3>No</h3>
+                                    <p>blab</p>
+                                </div>
+                                <script>
+                                    $(function() {
+                                        $('#registered').accordion();
+                                    });
+                                </script>-->
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+

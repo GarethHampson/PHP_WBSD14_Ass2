@@ -1,0 +1,90 @@
+<?php require_once 'template/admin_header.phtml';
+?>
+
+
+<div class="container">
+    <h1>Add a New Product</h1>
+    <div class="row">
+        <form method="post" action="admin_addproduct.php">
+            <div class = "col-md-8">
+                <div class = "panel panel-default">
+                    
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Enter Product Details</h3>
+                        </div>
+                        <div class = "panel-body">
+                            <div class="form-group">
+                                <label for="catID">Category</label>
+                                <select class="form-control" name="catID">
+                                    <?php foreach ($view->categoryList as $category) : ?>
+                                        <option value="<?php echo htmlentities($category->getID()); ?>" ><?php echo htmlentities($category->getCategory()); ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="brandID">Brand</label>
+                                <select class="form-control" name="brandID">
+                                    <?php foreach ($view->categoryList as $category) : ?>
+                                        <option value="<?php echo htmlentities($category->getID()); ?>" ><?php echo htmlentities($category->getCategory()); ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="prodName">Product Name</label>
+                                <input type="text" class="form-control" id="prodName" name="prodName"  placeholder="Enter Product Name" >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="prodIntro">Product Introduction</label>
+                                <textarea class="form-control"  id="prodIntro" rows="3" name="prodIntro" placeholder="Enter a Product Introduction" ></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="prodDesc">Product Description</label>
+                                <textarea class="form-control"  id="prodDesc" rows="5" name="prodDesc" placeholder="Enter a Product Description" ></textarea>
+                            </div>
+
+                            <tr>
+
+                            </tr>
+                        </div>
+                  
+                </div>
+            </div>
+    
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Pricing</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="prodPrice">Current Price</label>
+                        <input type="text" class="form-control" id="prodPrice" name="prodPrice" placeholder="Enter the Product Price" >
+
+                    </div>
+                </div>
+            </div>
+            <p align="center"><input class="btn btn-primary" name="submit" type="submit" value="Submit"></p>
+        </div>
+    </div>
+            </form>
+</div>
+</div>
+
+
+                <?php
+          
+
+
+
+
+
+
+
+
+
+
+
+                

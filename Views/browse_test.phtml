@@ -1,0 +1,65 @@
+<?php require_once 'template/header.phtml';
+?>
+
+
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">  
+                    <h1>Product Listing</h1>
+
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Image</th>
+                            <th>Product Name</th>
+                            <th>Category</th>
+                            <th>Current Price (£)</th>
+                            <th>Sale Price</th>
+
+                            <th>Options</th>
+                        </tr>
+                        <?php foreach ($view->productsList as $product) : ?>
+                            <form  method="get" action="product.php">
+                                <input type="hidden" name ="id" value="<?php echo htmlentities($product->getID()); ?>"
+                                       <tr>
+                                    <td><img class="img-square" src="<?php echo htmlentities($product->getImage()); ?>" alt="Main Image Category" style="width: 60px;"></td>
+                                    <td><?php echo htmlentities($product->getName()); ?></td>
+                                    <td><?php echo htmlentities($product->getCategory()); ?></td>
+                                    <td><?php echo htmlentities($product->getPrice()); ?></td>
+                                    <td>TBD</td>
+
+                                    <td><input type="submit" value="View Details" class="btn btn-info"></td>
+                                </tr>
+                            </form>
+
+                        <?php endforeach; ?>   
+                    </table> 
+                    <nav>
+                    <ul class="pagination">
+                        <li>
+                            <a href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li>
+                            <a href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p align="center"><a class="btn btn-primary" href="index.php" role="button">Return to Homepage</a></p>
+
+</div>

@@ -1,0 +1,26 @@
+<?php require_once 'template/admin_header.phtml';
+?>
+
+<link rel="stylesheet" href="bootstrap/css/signin.css"> 
+
+<div class="container">
+
+<div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Admin Pages - Please Log In Here</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <form class="form-signin" method="POST" action="admin_login.php">
+                                        <label class="sr-only" for="adminUsername">Admin Username</label>
+                                        <input id="adminUsername" name="adminUsername" class="form-control" type="text" autofocus="" required="" placeholder="Admin Username">
+                                        <label class="sr-only" for="adminPassword">Password</label>
+                                        <input id="adminPassword" name="adminPassword" class="form-control" type="password" required="" placeholder="Password">
+                                        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+</div>

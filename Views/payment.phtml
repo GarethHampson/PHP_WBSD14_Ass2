@@ -1,0 +1,39 @@
+<?php require_once 'template/header.phtml';
+?>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">  
+                    <h1>Your Payment</h1>
+                    <p> This your payment </p>
+
+                                       
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Please enter your Credit Card Number</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <form method="POST" action="ordercomplete.php">
+                                        
+                                        <div class="form-group">
+                                                <label for="card_number">Credit Card Number *</label>
+                                                <input type="text" class="form-control" name="card_number" id="card_number" value="" >
+                                        <button class="btn btn-default" type="submit" name="completeorder">Confirm Order</button>
+                                        </div>
+                                        
+                                    </form>
+                                </div>
+                            </div>
+
+                </div>
+                        
+        </div>
+    </div>
+</div>
+             </div>
+    </div>
+</div>

@@ -1,0 +1,94 @@
+<?php require_once 'template/admin_header.phtml';
+?>
+
+
+
+<div class="container">
+                        <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <form method="POST" action="admin_productlist.php">
+                                        <p>Admin Currently Logged in <?= $_SESSION['admin_id']?> </p>
+                                        <button class="btn btn-default" type="submit" name="admin_logout" >Logout</button>
+                                    </form>
+                                    
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">  
+                    <h1>Product Listing</h1>
+                    <div class="row">
+
+                        <div class="col-lg-6">
+
+
+                            <div class="input-group">
+                                <div class="input-group-btn">
+                                    <form method="get" action="admin_productlist.php">
+<!--                                    <button type="button" type="submit" class="btn btn-default" aria-expanded="false">Select Category</button>-->
+<input  type="submit" class="btn btn-default" value="Select Category" aria-expanded="false">
+                                </div><!-- /btn-group -->
+<!--                                <form method="get" action="admin_productlist.php">-->
+
+                             <select class="form-control" name="catID">
+                                        <option value = "*">All Products</option>
+                                        <?php foreach ($view->categoryList as $category) : ?>
+                                    
+                                        <option value="<?php echo htmlentities($category->getID()); ?>"><?php echo htmlentities($category->getCategory()); ?></option>
+                                        <?php endforeach;?>
+                                </select>
+<!-- <span class="input-group-btn">-->
+<!--                                    <input class="btn btn-default" type="submit" value="Go!">-->
+<!--               </span>   -->
+</form>
+                            </div><!-- /input-group -->
+                        </div><!-- /.col-lg-6 -->
+                        <div class="col-lg-6">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search for...">
+                                <span class="input-group-btn">
+                                    <button  class="btn btn-default" type="button">Go!</button>
+                                </span>
+                            </div><!-- /input-group -->
+                        </div><!-- /.col-lg-6 -->
+                    </div>  
+                    <br/>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Image</th>
+                            <th>Product Name</th>
+                            <th>Category</th>
+                            <th>Current Price</th>
+                            <th>Sale Price</th>
+                            <th>Live?</th>
+                            <th>Options</th>
+                        </tr>
+                        <?php foreach ($view->productsList as $product) : ?>
+                        <form  method="get" action="admin_productdetails.php">
+                            <input type="hidden" name ="prodID" value="<?php echo htmlentities($product->getID()); ?>"
+                            <tr>
+                                <td><img class="img-square" src="<?php echo htmlentities($product->getImage()); ?>" alt="Main Image Category" style="width: 60px;"></td>
+                                <td><?php echo htmlentities($product->getName()); ?></td>
+                                <td><?php echo htmlentities($product->getCategory()); ?></td>
+                                <td><?php echo htmlentities($product->getPrice()); ?></td>
+                                <td>TBD</td>
+                                <td>TBD</td>
+                                <td><input type="submit" value="Edit" class="btn btn-info"></td>
+                            </tr>
+                        </form>
+                            
+                        <?php endforeach; ?>   
+                </div>
+            </div>
+        </div>
+    </div>
+    <p align="center"><a class="btn btn-primary" href="admin_addproduct.php" role="button">Enter a New Product</a></p>
+    
+</div>

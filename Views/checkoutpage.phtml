@@ -1,0 +1,68 @@
+<?php require_once 'template/header.phtml';
+?>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">  
+                    <h1>Your Checkout Page</h1>
+                    <p> Please confirm your order and delivery details: </p>
+                    
+
+
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Product Details</th>
+                            <th>Price (£)</th>
+                            <th>Quantity</th>
+                            <th>Subtotal</th>
+                        </tr>
+                        <?php
+                        $total = 0;
+                        //var_dump($view->cartList);
+                        foreach ($view->cartList as $cartlist) :
+                            ?>
+                            <?php $subtotal = (int) htmlentities($cartlist->getPrice()) * (int) htmlentities($cartlist->getCartQuantity());
+                            ?>
+                            <tr>
+                                <td><?php echo htmlentities($cartlist->getProductDetails()); ?></td>
+                                <td><?php echo htmlentities($cartlist->getPrice()); ?></td>
+                                <td><?php echo htmlentities($cartlist->getCartQuantity()); ?></td>
+                                <td><?php echo ($subtotal) ?></td>
+                            </tr>
+
+                            <?php
+                            $total += $subtotal;
+                        endforeach; ?>
+                            <form action="checkoutpage.php" method="POST">                        
+                        <tr>
+                            <td colspan = "3" align="right"><strong>Total:</strong></td>
+                            <td><input type="hidden" name = "total" readonly="readonly" value = "<?php echo $total ?>" > <?php echo '£' . $total ;?> </td>
+
+                        </tr>
+                 
+  
+   
+                    
+                    
+
+            </div>
+        </div>
+    </div>
+</div>
+    <p align="center"><a class="btn btn-warning" href="shoppingcart.php" role="button">Return to Cart</a><input class="btn btn-success" type="submit" value="Checkout" >
+</div>
+</form>
+
+
+              
+
+
+
+
+
+
+
+
+

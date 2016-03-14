@@ -1,0 +1,80 @@
+<?php require_once 'template/header.phtml';
+?>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">  
+                    <h1>Your Cart Contents</h1>
+                    <p> You can update quantities or delete items here </p>
+                    <form action ="shoppingcart.php" method ="POST">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Product Details</th>
+                            <th>Price (£)</th>
+                            <th>Quantity</th>
+                            <th>Subtotal</th>
+                            <th>Options</th>
+                        </tr>
+                        <?php 
+                        $total = 0;
+                        //var_dump($view->cartList);
+                        foreach ($view->cartList as $cartlist) : ?>
+                            <?php $subtotal = (int)htmlentities($cartlist->getPrice()) * (int)htmlentities($cartlist->getCartQuantity());
+                            ?>
+                            <tr>
+                            <td><?php echo htmlentities($cartlist->getProductDetails()); ?></td>
+                            <td><?php echo htmlentities($cartlist->getPrice()); ?></td>
+                            <td><input type="text" name="<?php echo htmlentities($cartlist->getCartStockID()); ?>" value="<?php echo htmlentities($cartlist->getCartQuantity()); ?>"></td>
+                            <td><?php echo ($subtotal) ?></td>
+                            <td>
+<!--                                <form  method="get" action="shoppingcart.php">
+                                    <input type="hidden" name="cart_id" value="<?php echo htmlentities($cartlist->getCartID()); ?>">
+                                    <input type="hidden" name="task" value="delete">
+                                    <input type="submit" value="Remove from Cart" class="btn btn-danger">
+                              </form>-->
+                                
+                             
+                            <a class="btn btn-danger" href="shoppingcart.php?task=delete&cart_id=<?php echo htmlentities($cartlist->getCartID()); ?>" role="button">Remove from Cart</a>   
+                            </td>
+                        </tr>
+
+                        <?php
+                        
+                        if ($cartlist->getStockLevel() < $cartlist->getCartQuantity()) {
+                            echo '<td colspan="5">There is only ' . $cartlist->getStockLevel() . ' left of ' . ($cartlist->getProductDetails()). '. Please either adjust your quantity, or delete the product.</td>';
+                        }
+                        $total += $subtotal;
+                  
+                        endforeach; ?>
+                    
+                        <tr>
+                            <td colspan = "2" ></td>
+                            <td ><input type="submit" class="btn btn-primary" value="Update Quantities"</td>
+                                                        
+                            <td colspan = "2" ></td>
+                            
+                           
+                        </tr>
+                      </form>                      
+                        <tr>
+                            <td colspan = "3" align="right"><strong>Total:</strong></td>
+                            <td><?php echo '£' . $total ;?></td>
+                            <td></td>
+                        </tr>
+                        
+                    </table>
+
+                    
+                    <p align="center"><a class="btn btn-info" href="index.php" role="button">Continue Shopping</a><a class="btn btn-success" href="checkoutaddress.php" role="button">Checkout</a></p>
+                    
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

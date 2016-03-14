@@ -1,0 +1,43 @@
+<?php require_once 'template/header.phtml'; ?>
+
+<link href="bootstrap/css/carousel.css" rel="stylesheet">
+
+ <div class="container theme-showcase" role="main">
+     
+    <?php foreach ($view->categoryDesc as $category) : ?>
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron" style="background: url(<?php echo htmlentities($category->getImage());?>) no-repeat center center">
+        <h1><?php echo htmlentities($category->getCategory()); ?></h1>
+        <p><?php echo htmlentities($category->getDescription()); ?></p>
+        <p><a href="#" class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
+      </div>
+<?php endforeach; ?>
+
+<div class="container marketing">
+    
+      <?php foreach ($view->productsList as $product) : ?>
+      <!-- Three columns of text below the carousel -->
+      <div class="row">
+<!--        <div class="col-lg-4">
+          <img class="img-square" src="<?php echo htmlentities($product->getImage()); ?>" alt="Accessories Category" style="width: 140px; height: 140px;">
+          <h3><?php echo htmlentities($product->getName()); ?></h3>
+          <p><a class="btn btn-default" href="product.php?id=<?php echo htmlentities($product->getId()); ?>" role="button">View details &raquo;</a></p>
+        </div> /.col-lg-4 -->
+      
+        
+        <div class="col-sm-6 col-md-3">
+      <div class="thumbnail">
+         <img src="<?php echo htmlentities($product->getImage()); ?>" 
+         alt="Generic placeholder thumbnail" style="height: 200px;">
+      </div>
+      <div class="caption">
+         <h3><?php echo htmlentities($product->getName()); ?></h3>
+         <p><?php echo htmlentities($product->getPrice()); ?></p>
+         <p>
+            <a class="btn btn-primary" role="button" href="product.php?id=<?php echo htmlentities($product->getId()); ?>">View Details &raquo;</a>
+              
+         </p>
+      </div>
+   </div> 
+
+ <?php endforeach; 

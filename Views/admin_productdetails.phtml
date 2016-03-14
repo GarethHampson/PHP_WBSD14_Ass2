@@ -1,0 +1,153 @@
+<?php require_once 'template/admin_header.phtml';
+?>
+
+<?php foreach ($view->productsList as $product) : ?>
+
+    <?php $selectCat = ($product->getCategory());
+
+    ?>
+
+    <div class="container">
+        <h1>Product Listing</h1>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+
+                        <div>
+                            <img class="img-square" src="<?php echo htmlentities($product->getImage()); ?>" alt="Main Image Category" style="height: 400px;">
+                        </div>
+                        <form method="get" action="admin_productimages.php">    
+                            <div>
+
+                                <input type="hidden" name="prodID" value="<?php echo htmlentities($product->getID()); ?>">
+                                <input type="submit" value="Edit Product Images" class="btn btn-info">
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+            <form method="post" action="admin_productdetails.php?prodID=<?php echo htmlentities($product->getID()); ?>">
+                  <div class = "col-md-8">
+                    <div class = "panel panel-default">
+                        <div class = "panel-body">
+                            <div class="form-group">
+                                <label for="catID">Category</label>
+                                <select class="form-control" name="catID">
+                                    <?php foreach ($view->categoryList as $category) : ?>
+                                        <option value="<?php echo htmlentities($category->getID()); ?>" selected="<?php if (($category->getID()) == ($product->getCategory()) ? "selected" : "") ; ?>" ><?php echo htmlentities($category->getCategory()); ?></option>
+    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="prodName">Product Name</label>
+                                <input type="text" class="form-control" id="prodName" name="prodName" value="<?php echo htmlentities($product->getName()); ?>" placeholder="Enter Product Name" >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="prodIntro">Product Introduction</label>
+                                <textarea class="form-control"  id="prodIntro" rows="3" name="prodIntro" placeholder="Enter a Product Introduction" ><?php echo htmlentities($product->getIntroduction()); ?></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="prodDesc">Product Description</label>
+                                <textarea class="form-control"  id="prodDesc" rows="5" name="prodDesc" placeholder="Enter a Product Description" ><?php echo htmlentities($product->getDescription()); ?></textarea>
+                            </div>
+
+                            <tr>
+
+                            </tr>
+                        </div>
+                    </div>
+                </div>
+        
+        <div class="row">
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Pricing</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="prodPrice">Current Price</label>
+                            <input type="text" class="form-control" id="prodPrice" name="prodPrice" value="<?php echo htmlentities($product->getPrice()); ?>" placeholder="Enter the Product Price" >
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div align="center"> <input class="btn btn-primary" name ="submit" type="submit" value="Update Product Details">
+                       <input class="btn btn-danger" name ="delete" type="submit" value="Delete This Product">
+                        </div>
+                    </div>
+                </div>
+            </div>
+      </form>
+            <div class="col-md-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Sale Details</h3>
+                    </div>
+                    <div class="panel-body">
+                        Sale
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<?php endforeach; ?>
+
+  
+
+
+
+
+<form>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Inventory</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <tr>
+                            <th>Stock ID</th>
+                            <th>Colour</th>
+                            <th>Size</th>
+                            <th>Stock Level</th>
+                        </tr>
+<?php foreach ($view->inventoryList as $inventory) : ?>
+                            <tr>
+                                <td><?php echo htmlentities($inventory->getStockID()) ?></td>
+                                <td><?php echo htmlentities($inventory->getStockColour()) ?></td>
+                                <td><?php echo htmlentities($inventory->getStockSize()) ?></td>
+                                <td><?php echo htmlentities($inventory->getStockLevel()) ?></td>
+                            </tr>
+<?php endforeach; ?>
+                    </table>
+                    <form method="get" action="admin_productimages.php">    
+                        <div>
+
+                            <input type="hidden" name="prodID" value="<?php echo htmlentities($product->getID()); ?>">
+                            <input type="submit" value="Edit Product Inventory" class="btn btn-info">
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+

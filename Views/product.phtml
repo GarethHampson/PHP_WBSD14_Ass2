@@ -1,0 +1,120 @@
+<?php require_once 'template/header.phtml'; ?>
+
+        <link href="websiteCSS/style.css" rel="stylesheet" type="text/css"/>
+        <script src="js/mouseover_popup.js" type="text/javascript" language="Javascript"></script>
+
+
+
+<ol class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Library</a></li>
+    <li class="active">Data</li>
+</ol>
+
+        <div style="display: none; position: absolute; z-index: 20; left: 20; top: 20; width: 15; height: 15" id="preview_div"></div>
+<?php foreach ($view->productsList as $product) : ?>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h1><?php echo htmlentities($product->getName()); ?></h1>
+                        <div>
+                            <img class="img-square" src="<?php echo htmlentities($product->getImage()); ?>" alt="Main Image Category" style="height: 400px;">
+
+                        </div>
+
+                        <div class = "row">
+                            
+                            <?php foreach ($view->productImages as $image) : ?>
+                               
+                                <img class="img-square" src="<?php echo htmlentities($image->getProductImages()); ?>" alt="Main Image Category" style="width: 60px;" onmouseover="showtrail('<?php echo htmlentities($image->getProductImages()); ?>', '',390,400)" onmouseout="hidetrail()">
+                            <?php endforeach ?>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class = "col-md-5">
+                <div class = "panel panel-default">
+                    <div class = "panel-body">
+                        
+
+                        <form method="get" action="shoppingcart.php">
+                            <input type="hidden" name="task" value="add">
+                            <input type="hidden" name="prodID" value="<?php echo htmlentities($product->getID()); ?>">
+
+                        <h3>Price</h3>
+                        <div>
+                            <h3>£ <?php echo htmlentities($product->getPrice()); ?></h3>
+                            <img src="<?php echo htmlentities($product->getBrand()); ?>" alt="" style="width: 100px;">
+                        </div>
+                        <div>
+                            <select name="prodCol" class="form-control">
+                                <?php foreach ($view->productColour as $colour) : ?>
+                                    <option value = "<?php echo htmlentities($colour->getColourID()); ?>"><?php echo htmlentities($colour->getColourName()); ?></option>
+                                <?php endforeach ?>
+                            </select>
+
+                            <select name="prodSize" class="form-control">
+                                <?php foreach ($view->productSize as $size) : ?>
+                                    <option value = "<?php echo htmlentities($size->getSizeID()); ?>"><?php echo htmlentities($size->getSizeName()); ?></option>
+                                <?php endforeach ?>
+                            </select>
+                  
+                            <input type="submit" value="Add to Cart" class="btn btn-primary">
+                            
+                    </div>
+                        </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-7">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#description">Product Description</a></li>
+                        <li><a data-toggle="tab" href="#reviews">Product Reviews</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="description" class="tab-pane fade in active">
+                            <h3><?php echo htmlentities($product->getIntroduction()); ?></h3>
+                            <p><?php echo htmlentities($product->getDescription()); ?></p>
+                        </div>
+                        <div id="reviews" class="tab-pane fade">
+                            <h3>Reviews</h3>
+                            <p>Vestibulum nec erat eu nulla rhoncus fringilla ut non neque. Vivamus nibh urna, ornare id gravida ut, mollis a magna. Aliquam porttitor condimentum nisi, eu viverra ipsum porta ut. Nam hendrerit bibendum turpis, sed molestie mi fermentum id. Aenean volutpat velit sem. Sed consequat ante in rutrum convallis. Nunc facilisis leo at faucibus adipiscing.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<?php
+endforeach;
+
+
+
+
+
+
+
+
+
+
+
+
